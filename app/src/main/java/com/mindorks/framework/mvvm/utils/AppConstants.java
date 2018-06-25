@@ -24,7 +24,7 @@ public final class AppConstants {
 
     public static final int API_STATUS_CODE_LOCAL_ERROR = 0;
 
-    public static final String DB_NAME = "mindorks_mvvm.db";
+    public static final String DB_NAME = "mindorks_mvvm_3.db";
 
     public static final long NULL_INDEX = -1L;
 

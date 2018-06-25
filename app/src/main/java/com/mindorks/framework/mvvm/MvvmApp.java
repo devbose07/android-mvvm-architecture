@@ -21,6 +21,7 @@ import android.app.Application;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor;
+import com.facebook.stetho.Stetho;
 import com.mindorks.framework.mvvm.di.component.DaggerAppComponent;
 import com.mindorks.framework.mvvm.utils.AppLogger;
 
@@ -56,13 +57,14 @@ public class MvvmApp extends Application implements HasActivityInjector {
                 .build()
                 .inject(this);
 
-        AppLogger.init();
-
+        AppLogger.init(this);
+AppLogger.i("MVVM","Start Logging");
         AndroidNetworking.initialize(getApplicationContext());
         if (BuildConfig.DEBUG) {
             AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BODY);
         }
 
         CalligraphyConfig.initDefault(mCalligraphyConfig);
+        Stetho.initializeWithDefaults(this);
     }
 }

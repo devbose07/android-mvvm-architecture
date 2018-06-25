@@ -16,6 +16,9 @@
 
 package com.mindorks.framework.mvvm.utils;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.mindorks.framework.mvvm.BuildConfig;
 
 import timber.log.Timber;
@@ -54,9 +57,15 @@ public final class AppLogger {
         Timber.i(throwable, s, objects);
     }
 
-    public static void init() {
-        if (BuildConfig.DEBUG) {
+    public static void init(Context context) {
+        if (!BuildConfig.DEBUG) {
+            Log.i("TIMBER","In Debug Mode");
             Timber.plant(new Timber.DebugTree());
+        }
+        else
+        {
+            Log.i("TIMBER","In Non Debug Mode");
+            Timber.plant(new FileLoggingTree(context));
         }
     }
 
